@@ -1,5 +1,5 @@
 public class Thread1 implements Runnable {
-    Bank bank;
+    private final Bank bank;
 
     public Thread1(Bank b) {
         this.bank = b;
@@ -7,6 +7,12 @@ public class Thread1 implements Runnable {
 
     @Override
     public void run() {
-        bank.inc();
+        synchronized (bank) {
+            while (bank.getAccount() < 20000){
+                bank.setAccount(bank.getAccount() + 2);
+                System.out.println("Inc: " + bank.getAccount());
+            }
+        }
+        //System.out.println("Inc: " + bank.getAccount());
     }
 }
