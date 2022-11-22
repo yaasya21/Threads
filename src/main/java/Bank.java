@@ -2,9 +2,6 @@ public class Bank {
     private int account = 2;
 
     public void setAccount(int account) {
-        if (account < 0) {
-            throw new IllegalArgumentException("The money on account must be >=0");
-        }
         this.account = account;
     }
 
